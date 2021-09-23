@@ -16,40 +16,44 @@
 
 // After all questions OR after time runs out, show the user their score
 // High score tracking
-
-var quizContainer = document.getElementById(quiz);
+var timerEl = document.querySelector(".time");
+var questionSectionEl = document.querySelector(".question-section");
+var quizContainer = document.getElementById("quiz");
 var questions = [
     {
-        question1: "Commonly used data types DO NOT include:", 
+        question: "Commonly used data types DO NOT include:", 
         options: ["strings","booleans","alerts","numbers"],
-        answer: options[2]
+        answer: "alerts"
     }, 
     {
-        question2: "Arrays in JavaScript can be used to store ______",
+        question: "Arrays in JavaScript can be used to store ______",
         options: ["numbers and strings","other arrays","boolean","all of the above"],
-        answer: options[1]
+        answer: "numbers and strings"
     }, 
     {
-        question1: "String values must be encolsed within ______ when being assigned to variables.", 
+        question: "String values must be encolsed within ______ when being assigned to variables.", 
         options: ["commas","curly brackets","quotes","paranthesis"],
-        answer: options[3]
+        answer: "quotes"
     }, 
     {
-        question1: "A very useful tool used during development and debugging for printing content to the debugging for printing content to the debugger is:", 
+        question: "A very useful tool used during development and debugging for printing content to the debugging for printing content to the debugger is:", 
         options: ["javascript","terminal/bash","for loops","console.log"],
-        answer:options[4]
+        answer: "console.log"
     }
 ];
+var questionIndex=0;
+var timeLeft = questions.length*15;
 
+var timerInterval;
 // on click, the startGame function begins
 function startGame() {
 
     // makes the title, instructions, and start button disappear
-    var mainPage= document.getElementById(quiz);
+    var mainPage= document.getElementById("quiz");
      mainPage.setAttribute("style", "display: none")
-
+     displayQuestion();
     //  countdown begins function 
-        var timeLeft = 60;
+       
         function callback() { 
             timeLeft--;
             timerEl.textContent = "Time: " + timeLeft;
@@ -58,10 +62,56 @@ function startGame() {
             timerEl.textContent = "Time is up!";
         }
         }
-    var timerInterval = setInterval(callback, 1000);
+      timerInterval = setInterval(callback, 1000);
     // askQuestion1();
     };
 
+    function displayQuestion() {
+        questionSectionEl.innerHTML= `  
+    
+        <h2>Question ${questionIndex+1} : ${questions[questionIndex].question} </h2>
+          <ul>
+            <li><button  class="answer">${questions[questionIndex].options[0]}</button></li>
+            <li ><button class="answer">${questions[questionIndex].options[1]}</button></li>
+            <li ><button class="answer">${questions[questionIndex].options[2]}</button></li>
+            <li ><button class="answer">${questions[questionIndex].options[3]}</button></li>
+          </ul>
+          
+           <div class="message"></div>
+          `
 
+
+          var answerEl= document.querySelectorAll(".answer");
+          var messageEl=document.querySelector(".message");
+          
+          for(var i=0;i<answerEl.length;i++){
+              answerEl[i].addEventListener("click", function(event){
+                  if(event.target.textContent ===questions[questionIndex].answer ) {
+                      messageEl.textContent="correct";  
+                  } else {
+                      messageEl.textContent="wrong";
+                      timeLeft=timeLeft-15;
+                       
+                  }
+      
+                  setTimeout(function(){
+                    questionIndex++;
+                     if(questionIndex<questions.length && timeLeft>0) {  
+                         displayQuestion();
+
+                      
+                      
+                     }else {
+                         timeLeft=0;
+                       clearInterval(timerInterval)
+                     }
+                   
+                  },2000)
+                 
+              })
+          }
+
+
+    }
 
 
