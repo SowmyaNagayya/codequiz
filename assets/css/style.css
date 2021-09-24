@@ -1,7 +1,8 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body {
@@ -9,35 +10,40 @@ body {
 }
 
 h1.time {
-    text-align: center;
-    margin-left: 20%;
-    margin-right: 20%;
+    font-size: 40px;
+    padding: 10px;
+    margin: 20px;
 }
 
 #quiz {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 40px;
+    margin-left: 28%;
+    margin-right: 28%;
     text-align: center;
-    margin: 10%;
-    margin-left: 20%;
-    margin-right: 20%;
-    background-color: rgb(118, 118, 148);
-    padding-left: 50px;
-    padding-right: 50px;
-    border-radius: 15px;
+    background-color: rgb(189, 145, 229);
+    color: black;
+    border-radius: 6px;
+    margin-top: 35px;
 
 }
 nav {
+    margin-top: 35px;
+    text-align: center;
     padding: 20px;
-    width: 50%;
+    font-size: larger;
 }
 
 nav :hover {
-    color: Red;
+    color: black;
+
   }
 
-nav a {
-    background-color: rgb(214, 44, 44);
+a {
+    text-decoration: none;
+    background-color: #F4A386;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
 }
 
 h1 {
@@ -60,10 +66,69 @@ h3 {
 }
 
 #startBtn {
-    margin-top: 20px;
+    margin-top: 25px;
     background-color: rgb(24, 102, 24);
+    padding: 5px;
+   
 }
 
 #startBtn :hover {
     color: yellow;
   }
+
+  .time {
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    
+}
+
+
+.question-section {
+    text-align: center;
+    margin: 15%;
+    background-color: rgb(118, 118, 148);
+
+}
+
+.question-section h1 {
+        font-size: 50px;
+}
+
+/*.answer {
+    list-style-type:none;
+    width: 200px;
+    margin: 0.2%;
+    background-color: lightblue;
+}
+
+.answer {
+    animation: blinker 1s linear infinite;
+    color: green;
+    font-size: 25px;
+  }
+
+.wrong {
+    animation: blinker 1s linear infinite;
+    color: red;
+    font-size: 25px;
+  }
+*/
+input:focus, button:focus{
+    background-color: red;
+    }
+    
+.highscores {
+    padding: 40px;
+    margin-left: 28%;
+    margin-right: 28%;
+    text-align: center;
+    background-color: #D7F486;
+    color: black;
+    border-radius: 6px;
+    margin-top: 35px;
+    padding-bottom: 30%;
+    ;
+}
+
+
