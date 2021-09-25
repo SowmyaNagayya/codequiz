@@ -1,7 +1,13 @@
 var highScoreEl= document.querySelector(".highscore");
-var name= JSON.parse(localStorage.getItem("name"))
+var username= JSON.parse(localStorage.getItem("name"));
 
 
-for(var i=0;i<name.length;i++){
-    highScoreEl.innerHTML+=`${}name[i]`;
+for(var i=0;i<username.length;i++){
+    highScoreEl.innerHTML+=`<li>${username[i]} </li>`;
 }
+
+var playAgain= document.querySelector("#playagain");
+playAgain.addEventListener("click", function(){
+    location.href="./index.html";
+    
+})

@@ -16,15 +16,17 @@
 
 // After all questions OR after time runs out, show the user their score
 // High score tracking
+
+//selectors
 var timerEl = document.querySelector(".time");
 var questionSectionEl = document.querySelector(".question-section");
 var quizContainer = document.getElementById("quiz");
 var finalScoreEl= document.querySelector(".card");
-var scoreDetails = document.querySelector(".card");
 var inputField = document.getElementById("name");
 var btn = document.querySelector("button");
 var formEl= document.querySelector("#form");
 
+//global variables
 var questions = [
     {
         question: "Commonly used data types DO NOT include:", 
@@ -53,6 +55,7 @@ var timeLeft = questions.length*15;
 var username=  JSON.parse(localStorage.getItem("name")) ||  [];
 /*var finaScore=0;*/
 
+//callback function for timer
 function callback() { 
     timeLeft--;
     timerEl.textContent = "Time: " + timeLeft;
@@ -60,28 +63,27 @@ function callback() {
         clearInterval(timerInterval);
         timerEl.textContent = "Time is up!";
     }
-    // if user has answered all questions, end game and get the score
+     
 }
 
+  // if user has answered all questions, end game and get the scorecalculate score and display final score
 function endGame(){
-    // calculate score and stop counter
+  
     clearInterval(timerInterval);
     timerEl.textContent = "Game over, man!";
     displayFinalScore();
 }
 
-// on click, the startGame function begins
-function startGame() {
-
-    // makes the title, instructions, and start button disappear
-    var mainPage= document.getElementById("quiz");
+//start button disappear on click, the startGame function begins
+function startGame() {  
+    var mainPage= quizContainer;
     mainPage.setAttribute("style", "display: none");
     timerInterval =setInterval(callback, 1000);
     displayQuestion();
 
 }
 
-
+//display questions one after another
 
 function displayQuestion() {
         questionSectionEl.innerHTML= `  
@@ -95,6 +97,7 @@ function displayQuestion() {
           
            <div class="message"></div>
           `
+          //when click one of the answers in option, it gives correct answer or wrong answer
           var answerEl= document.querySelectorAll(".answer");
           var messageEl=document.querySelector(".message");
           
@@ -103,28 +106,35 @@ function displayQuestion() {
                   console.log(event.target.textContent,questions[questionIndex].answer);
                   console.log(event.target.textContent ===questions[questionIndex].answer);
                   if(event.target.textContent ===questions[questionIndex].answer ) {
-                      messageEl.textContent="correct";  
+                      messageEl.textContent="correct"; 
+                      //if answer is correct adding 2 sec in timer 
                       timeLeft=timeLeft+5;
                   } else {
                       messageEl.textContent="wrong";
+                      //if answer is wrong penalize score time by ten seconds
                       timeLeft=timeLeft-10;
                        
                   }
-                 questionIndex++;
-                     if(questionIndex<questions.length && timeLeft>0) {  
+                  //before starting new question it waits 2sec for next question
+                  questionIndex++;
+                      if(questionIndex<questions.length && timeLeft>0) {  
                          setTimeout(displayQuestion,2000);
                                          
                      } else {
-                        questionSectionEl.setAttribute("style", "display:none");
-
-                        endGame();
+                        
+                        setTimeout(function(){
+                            questionSectionEl.setAttribute("style", "display:none");
+                            timerEl.setAttribute("style", "display: none");
+                           endGame();
+                        },2000)
+                     
                      }
                      
-            })
+                     } )
         }
 }
     
-    
+    //once questions is completed it calulates the time and display final score
     function displayFinalScore() {
         finalScoreEl.innerHTML = `
         <h1>All Done </h1> 
@@ -139,34 +149,15 @@ function displayQuestion() {
               </fieldset> 
           </form>`
 
-                
-     
-
-
-     formEl.addEventListener("submit", updateStorage)
+     //once we enetered the initial and click on submit button, it stores final score in local storage 
+     var formEl = document.querySelector("#form");          
+     formEl.addEventListener("submit", updateStorage);
 
        function updateStorage(event) {
            event.preventDefault();
            var usernameEl=document.querySelector("#username");
            username.push(usernameEl.value+" - "+timeLeft);
            localStorage.setItem("name",  JSON.stringify(username));
-           location.href="./index1.html"
+           location.href="./index1.html";
        }
-    //    function start() {
-    //        if(localStorage.getItem("name")!== null){
-    //            username=localStorage.getItem("name");
-    //            inputField.value=username;
-    //        }
-    //     }
-    //     btn.addEventListener("click", function(e) {
-    //         e.preventDefault();
-    //         username=inputField.value;
-    //         console.log(username);
-    //         updateStorage();
-    //     })
-    //     start();
     }
-
-              
-          
-    
