@@ -1,22 +1,3 @@
-// I have a bunch of quiz questions to ask. What is the best way to store all those questions, PLUS the correct answer for each one?
-// For each question in the quiz:
-   // The question itself
-   // The possible answers 
-   // Which answer is correct 
-
-// Have a process where:
-  // When the game starts, a countdown begins
-  // A wquestion is selected from the collection
-  // All the elements are added to the DOM 
-  // The user will click on one of the answers 
-  // Detect that click and determine if the user clicked on the right answer 
-     // If yes, add some points 
-     // If no, subtract 5 or 10 seconds from the time remaining
-     // Go the next question
-
-// After all questions OR after time runs out, show the user their score
-// High score tracking
-
 //selectors
 var timerEl = document.querySelector(".time");
 var questionSectionEl = document.querySelector(".question-section");
@@ -68,7 +49,6 @@ function callback() {
 
   // if user has answered all questions, end game and get the scorecalculate score and display final score
 function endGame(){
-  
     clearInterval(timerInterval);
     timerEl.textContent = "Game over, man!";
     displayFinalScore();
@@ -80,7 +60,6 @@ function startGame() {
     mainPage.setAttribute("style", "display: none");
     timerInterval =setInterval(callback, 1000);
     displayQuestion();
-
 }
 
 //display questions one after another
@@ -130,13 +109,13 @@ function displayQuestion() {
                      
                      }
                      
-                     } )
+             } )
         }
 }
     
-    //once questions is completed it calulates the time and display final score
-    function displayFinalScore() {
-        finalScoreEl.innerHTML = `
+//once questions is completed it calulates the time and display final score
+function displayFinalScore() {
+    finalScoreEl.innerHTML = `
         <h1>All Done </h1> 
           <form id="form">
             <h3>Your Final Score Is:${timeLeft}</h3>
@@ -160,4 +139,4 @@ function displayQuestion() {
            localStorage.setItem("name",  JSON.stringify(username));
            location.href="./index1.html";
        }
-    }
+}
