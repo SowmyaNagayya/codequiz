@@ -13,5 +13,5 @@ Created a Beginner JavaScript quiz that ask timed questions, deducts time for wr
 
 ## Link to deployed page
 
-You can also refer to this [GitHub Pages](https://github.com/SowmyaNagayya/hw02).
+You can also refer to this [GitHub Pages](https://github.com/SowmyaNagayya/codequiz).
 
