@@ -82,8 +82,8 @@ function displayQuestion() {
           
           for(var i=0;i<answerEl.length;i++){
               answerEl[i].addEventListener("click", function(event){
-                  console.log(event.target.textContent,questions[questionIndex].answer);
-                  console.log(event.target.textContent ===questions[questionIndex].answer);
+                //   console.log(event.target.textContent,questions[questionIndex].answer);
+                //   console.log(event.target.textContent ===questions[questionIndex].answer);
                   if(event.target.textContent ===questions[questionIndex].answer ) {
                       messageEl.textContent="correct"; 
                       //if answer is correct adding 2 sec in timer 
